@@ -12,6 +12,7 @@ import java.util.Scanner;
  */
 public class bt7 {
     static Scanner sc = new Scanner(System.in);
+    
     static int upperCaseCount(String s){
         int c = 0;
         for(int i=0;i<s.length()-1;i++){
@@ -20,6 +21,22 @@ public class bt7 {
             }
         }
         return c;
+    }
+    static void mailGenerator(String h,String tl,String t){
+        StringBuilder mail = new StringBuilder();
+        mail.append(t.toLowerCase());
+        mail.append(".");
+        mail.append(h.toLowerCase().charAt(0));
+        String[] chuoi = tl.split(" ");
+        for(String ch : chuoi){
+            mail.append(ch.toLowerCase().charAt(0));
+        }
+        mail.append("@ou.edu.vn");
+        String email = mail.toString();
+        String gmail = email.replaceFirst("@ou.edu.vn", "@gmail.com");
+        System.out.println(email);
+        System.out.println(gmail);
+        
     }
     
     public static void main(String[] args) {
@@ -31,7 +48,8 @@ public class bt7 {
         String ho = sc.nextLine();
         String fullname = ho + tenlot + ten;
         System.out.printf("xin chao, " + fullname);
-        System.out.println("So ki tu in hoa:" + upperCaseCount(fullname));
+        System.out.println("\nSo ki tu in hoa:" + upperCaseCount(fullname));
+        mailGenerator(ho, tenlot, ten);
         
     }
 }
