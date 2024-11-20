@@ -1,3 +1,4 @@
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -39,6 +40,22 @@ public class HocSinh {
         Calendar birthYear = Calendar.getInstance();
         birthYear.setTime(ngaySinh);
         return thisYear.get(Calendar.YEAR) - birthYear.get(Calendar.YEAR);
+    }
+
+    public double getDTB() {
+        return (diemToan + diemVan + diemAnh) / 3.0;
+    }
+
+    public String getHocLuc() {
+        double d = getDTB();
+        if (d >= 8)
+            return "Gioi";
+        else if (d >= 6.5)
+            return "Kha";
+        else if (d >= 5.0)
+            return "TB";
+        else
+            return "Yeu";
     }
 
     public String getMaSo() {
@@ -96,12 +113,13 @@ public class HocSinh {
     public static void main(String[] args) {
         try {
             // Định dạng ngày tháng
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+            df.setLenient(false); // kiem tra date co hop le khong (true) thi se tu fix, (false) se thong bao loi
 
             // Tạo đối tượng học sinh đầu tiên
             HocSinh hs1 = new HocSinh(
                     "Nguyen Van A",
-                    dateFormat.parse("01/06/2005"),
+                    df.parse("01/06/2005"),
                     "Ha Noi",
                     8.5,
                     7.0,
@@ -110,7 +128,7 @@ public class HocSinh {
             // Tạo đối tượng học sinh thứ hai
             HocSinh hs2 = new HocSinh(
                     "Le Thi B",
-                    dateFormat.parse("15/07/2006"),
+                    df.parse("15/07/2006"),
                     "Da Nang",
                     6.0,
                     5.5,
@@ -123,10 +141,11 @@ public class HocSinh {
             System.out.println(hs2);
             System.out.println("Tuoi cua hs1: " + hs1.getTuoi());
             System.out.println("Tuoi cua hs2: " + hs2.getTuoi());
+            System.out.println("Hoc luc hs2: " + hs2.getHocLuc() + String.format(" %.2f",hs2.getDTB()));
 
-        } catch (Exception e) {
+        } catch (ParseException e) {
             // Xử lý lỗi khi định dạng ngày không hợp lệ
-            System.err.println("Lỗi định dạng ngày: ");
+            System.err.println("Lỗi định dạng ngày: " + e.getMessage());
         }
     }
 
