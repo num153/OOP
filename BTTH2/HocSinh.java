@@ -112,11 +112,10 @@ public class HocSinh {
 
     public static void main(String[] args) {
         try {
-            // Định dạng ngày tháng
             SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
             df.setLenient(false); // kiem tra date co hop le khong (true) thi se tu fix, (false) se thong bao loi
 
-            // Tạo đối tượng học sinh đầu tiên
+
             HocSinh hs1 = new HocSinh(
                     "Nguyen Van A",
                     df.parse("01/06/2005"),
@@ -125,7 +124,6 @@ public class HocSinh {
                     7.0,
                     9.0);
 
-            // Tạo đối tượng học sinh thứ hai
             HocSinh hs2 = new HocSinh(
                     "Le Thi B",
                     df.parse("15/07/2006"),
@@ -134,17 +132,13 @@ public class HocSinh {
                     5.5,
                     7.5);
 
-            // In thông tin các học sinh
-            System.out.println("Thông tin học sinh 1:");
-            System.out.println(hs1);
-            System.out.println("Thông tin học sinh 2:");
-            System.out.println(hs2);
+            System.out.println("Hoc sinh 1:" + hs1);
+            System.out.println("Hoc sinh 1:" + hs2);
             System.out.println("Tuoi cua hs1: " + hs1.getTuoi());
             System.out.println("Tuoi cua hs2: " + hs2.getTuoi());
             System.out.println("Hoc luc hs2: " + hs2.getHocLuc() + String.format(" %.2f",hs2.getDTB()));
 
         } catch (ParseException e) {
-            // Xử lý lỗi khi định dạng ngày không hợp lệ
             System.err.println("Lỗi định dạng ngày: " + e.getMessage());
         }
     }
