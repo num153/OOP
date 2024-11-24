@@ -1,3 +1,5 @@
+package heheh;
+
 public class PhanSo {
     private int tuSo;
     private int mauSo;
@@ -39,7 +41,11 @@ public class PhanSo {
         int m = this.mauSo * ps.mauSo;
         return new PhanSo(t, m);
     }
-    
+    public int soSanh(PhanSo ps){
+        int left = this.tuSo*ps.mauSo;
+        int right = this.mauSo*ps.tuSo;
+        return Integer.compare(left, right);
+    }
 
     @Override
     public String toString() {
